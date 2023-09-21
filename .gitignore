@@ -5,3 +5,4 @@ __pycache__/
 # Ignore log files with a .log extension
 *.log
 *.png
+*.sh
