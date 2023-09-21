@@ -1,0 +1,7 @@
+# Ignore environment variables
+.env
+__pycache__/
+*.pyc
+# Ignore log files with a .log extension
+*.log
+*.png
