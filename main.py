@@ -3,9 +3,10 @@ from playwright.sync_api import sync_playwright
 from image_text_reader import read_image
 from currency_update_mailer import send_exchange_rate_email
 from failed_currency_check_mailer import send_failed_check_email
-from database_update import update_exchange_rate
+from database_update import automate_website
 import time
 import os
+import asyncio
 
 # Define the URL you want to open
 url = os.environ.get('EXCHANGE_URL')
@@ -33,7 +34,7 @@ if __name__ == '__main__':
         main()
         answer, rate = read_image(screenshot_file)
         if answer:
-            update_exchange_rate_data = update_exchange_rate(rate)
+            update_exchange_rate_data = asyncio.run(automate_website(str(rate)))
             if update_exchange_rate_data:
                 send_exchange_rate = send_exchange_rate_email(rate)
                 if send_exchange_rate:
